@@ -1,34 +1,50 @@
-let color = false;
+window.addEventListener('load', function(event){
+    alert("Hello World");//On load display message
+    
+    //When the user mouses over the header, ther text should change to red
+    const nameHeader = this.document.getElementById("name");
+    nameHeader.addEventListener("mouseover", () => {
+        nameHeader.style.color = "red";
+      });
+    nameHeader.addEventListener("mouseout", () => {
+        nameHeader.style.color = "white";
+     });
 
-const bulletElemetns = this.document.getElementsByTagName("li");
-bulletElemetns.addEventListener("click", function(event){
-    changeColour()
-});
 
-function changeColour() {
+    //Alternate coulor change of list elements on click
+    const bulletElemetns = this.document.getElementsByTagName("li");
     for(let i = 0; i < bulletElemetns.length; i++){
         bulletElemetns[i].addEventListener("click", function(event){
-            if(color){
-                bulletElemetns[i].style.color = "red"
-                color = false
-            }else{
-                bulletElemetns[i].style.color = "white"
-                color = true
-            }
+            changeColour(bulletElemetns[i])
         })
     }
+
+    //Add a rotation animation to h4 elements on click
+    const h4Elements = this.document.getElementsByTagName("h4");
+    for(let i = 0; i < h4Elements.length; i++){
+        h4Elements[i].addEventListener("click", function(event){
+            rotateYears(h4Elements[i]);
+        })
+    }
+
+});
+
+function rotateYears(h4Element){
+    h4Element.style.animation = "rotate 2s linear";
 }
 
+function changeColour(bulletElemetn) {
 
-//When the user clicks on the header, ther text should change to red
-// nameHeader.addEventListener("input", function(event){
-//     nameHeader.style.color = "red"
-// });
+    let color = false;
+    if(bulletElemetn.style.color == "red")
+        color = true;
 
-
-window.addEventListener('load', function(event){
-    const nameHeader = this.document.getElementById("name");
-    nameHeader.style.color = "red";
-
-    alert("Hello World");
-});
+    switch(color){
+        case true:
+            bulletElemetn.style.color = "white";
+            break;
+        case false:
+            bulletElemetn.style.color = "red";
+            break;
+    };
+}
