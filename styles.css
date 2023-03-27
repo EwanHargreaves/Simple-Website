@@ -16,3 +16,7 @@ h1  {
   .h4 {
     transform-origin: center center;
 }
+
+.animate {
+    animation: rotate 2s linear;
+}

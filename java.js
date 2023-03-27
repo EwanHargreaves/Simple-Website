@@ -20,17 +20,30 @@ window.addEventListener('load', function(event){
     }
 
     //Add a rotation animation to h4 elements on click
-    const h4Elements = this.document.getElementsByTagName("h4");
+    const h4Elements = document.getElementsByTagName("h4");
     for(let i = 0; i < h4Elements.length; i++){
-        h4Elements[i].addEventListener("click", function(event){
-            rotateYears(h4Elements[i]);
-        })
+        h4Elements[i].addEventListener("click", function(index){
+        return function(event){
+            rotateYears(h4Elements[index]);
+        }
+    }(i));
     }
 
 });
 
-function rotateYears(h4Element){
-    h4Element.style.animation = "rotate 2s linear";
+
+async function rotateYears(h4Element){
+
+    if(h4Element.classList.contains("animate"))
+        return;
+
+    h4Element.classList.add("animate");
+
+    function onAnimationEnd(){
+        h4Element.classList.remove("animate");
+        h4Element.removeEventListener("animationend", onAnimationEnd);
+    }
+    h4Element.addEventListener("animationend", onAnimationEnd);
 }
 
 function changeColour(bulletElemetn) {
