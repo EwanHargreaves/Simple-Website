@@ -1,0 +1,22 @@
+html {
+    background-color: #222222;
+    color: white;
+}
+
+h1  {
+    text-align: center;
+}
+
+/* 360deg rotation animation */
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
+  .h4 {
+    transform-origin: center center;
+}
+
+.animate {
+    animation: rotate 2s linear;
+}
